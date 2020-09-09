@@ -38,7 +38,7 @@ int main() {
   // 1. Init with Ki = 0 and Kd = 0
   // 2. Find a Kp that doesn't overshoot too fast but is able to follow the curvature -> 0.1
   // 3. Add a differential term Kp that smooths out the overshooting -> 2
-  // 4. As the route is not really smooth and sparsly clicked we use the integral part to smooth it -> 0.001
+  // 4. As the route is not really smooth and sparsly clicked I use the integral part to smooth it -> 0.001
   // 5. Let's see if we can go faster -> throttle to 0.5
   // 6. Tune parameters to reduce overshoot: Ki = 0.0003, Kd = 3
   // 7. works also fine at throttle = 0.3
