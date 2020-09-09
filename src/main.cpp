@@ -35,8 +35,15 @@ int main() {
 
   PID pid;
   // Initialize the pid gains. Kp, Ki, Kd
-  pid.Init(0.08, 0.0001, 1.9);
-  
+  // 1. Init with Ki = 0 and Kd = 0
+  // 2. Find a Kp that doesn't overshoot too fast but is able to follow the curvature -> 0.1
+  // 3. Add a differential term Kp that smooths out the overshooting -> 2
+  // 4. As the route is not really smooth and sparsly clicked we use the integral part to smooth it -> 0.001
+  // 5. Let's see if we can go faster -> throttle to 0.5
+  // 6. Tune parameters to reduce overshoot: Ki = 0.0003, Kd = 3
+  // 7. works also fine at throttle = 0.3
+  pid.Init(0.1, 0.0003, 3);
+
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
                      uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
