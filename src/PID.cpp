@@ -9,7 +9,7 @@ void PID::Init(double Kp_, double Ki_, double Kd_) {
   // Initialize PID coefficients
   Kp = Kp_;
   Ki = Ki_;
-  Kd = Kp_;
+  Kd = Kd_;
   
   // Initialize PID errors
   p_error = 0;
@@ -22,7 +22,7 @@ void PID::Init(double Kp_, double Ki_, double Kd_) {
 
 void PID::UpdateError(double cte) {
   // TODO: Update PID errors based on cte.
-  d_error = p_error;  // cte - prev_cte (which is the d_error before the update step)
+  d_error = cte - p_error;  // cte - prev_cte (which is the d_error before the update step)
   p_error = cte;
   i_error += cte;
 }
